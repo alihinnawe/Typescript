@@ -18,6 +18,10 @@ class Players implements Person {
         this.course = course;
     }
 
+    get PersonTemplate () { return document.querySelector("head>template.personTable");}
+
+    get PersonSection () { return this.PersonTemplate?.querySelector("sectionn.personTable");}
+
     getCourses(): string[] {
         return this.course;
     }
@@ -29,6 +33,13 @@ class Players implements Person {
     PlayersDetail(): string {
         return `${this.Vorname} ${this.name}, Age: ${this.age}, Nationality: ${this.nationality}`;
     }
+
+    createNewTable(){
+        const tableRow = this.PersonTemplate.content.firstElementChild.cloneNode(true);
+        this.PersonSection.append(tableRow);
+
+
+    }
 }
 
 const playerAli = new Players("Hinnawe", "Ali", 32, "Lebanese", ["Football"]);
@@ -36,3 +47,4 @@ const playerAli = new Players("Hinnawe", "Ali", 32, "Lebanese", ["Football"]);
 playerAli.addCourse("Tennis");
 console.log(playerAli.PlayersDetail()); 
 console.log(playerAli.getCourses()); 
+
